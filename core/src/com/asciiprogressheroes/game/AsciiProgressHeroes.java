@@ -1,33 +1,58 @@
 package com.asciiprogressheroes.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
+import com.asciiprogressheroes.game.view.CityScreen;
+import com.asciiterminal.ui.AsciiTerminal;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.Color;
 
-public class AsciiProgressHeroes extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
+import java.util.Random;
+
+public class AsciiProgressHeroes extends Game {
+
+	public static final String TILESET = "Bedstead-10-df.png";
+	public static final int CHARACTER_WIDTH = 6;
+	public static final int CHARACTER_HEIGHT = 10;
+
+	public static final int WINDOW_WIDTH = 32;
+	public static final int WINDOW_HEIGHT = 10;
+
+	private AsciiTerminal asciiTerminal;
 	
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		asciiTerminal = new AsciiTerminal("AsciiProgressHeroes", WINDOW_WIDTH, WINDOW_HEIGHT, TILESET, CHARACTER_WIDTH, CHARACTER_HEIGHT);
+
+		Random rand = new Random();
+
+//		for(int i = 0; i < WINDOW_WIDTH; i++) {
+//			for (int j = 0; j < WINDOW_HEIGHT; j++) {
+//				asciiTerminal.write(i, j, (char)rand.nextInt(255), new Color(rand.nextFloat(), rand.nextFloat(), rand.nextFloat(), 1));
+//			}
+//		}
+
+		this.setScreen(new CityScreen(this));
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+		asciiTerminal.clear();
+		super.render();
+		asciiTerminal.render(Gdx.graphics.getDeltaTime());
 	}
-	
+
+	@Override
+	public void resize(int width, int height) {
+		super.resize(width, height);
+		asciiTerminal.resize(width, height);
+	}
+
 	@Override
 	public void dispose () {
-		batch.dispose();
-		img.dispose();
+		asciiTerminal.dispose();
+	}
+
+	public AsciiTerminal getAsciiTerminal() {
+		return asciiTerminal;
 	}
 }
