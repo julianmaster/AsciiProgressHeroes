@@ -1,10 +1,11 @@
 package com.asciiprogressheroes.game;
 
-import com.asciiprogressheroes.game.view.CityScreen;
+import com.asciiprogressheroes.game.model.World;
+import com.asciiprogressheroes.game.view.MainMenuScreen;
+import com.asciiprogressheroes.game.view.RainbowColor;
 import com.asciiterminal.ui.AsciiTerminal;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 
 import java.util.Random;
 
@@ -18,6 +19,7 @@ public class AsciiProgressHeroes extends Game {
 	public static final int WINDOW_HEIGHT = 10;
 
 	private AsciiTerminal asciiTerminal;
+	private World world;
 	
 	@Override
 	public void create () {
@@ -31,13 +33,20 @@ public class AsciiProgressHeroes extends Game {
 //			}
 //		}
 
-		this.setScreen(new CityScreen(this));
+//		this.setScreen(new CityScreen(this));
+		this.setScreen(new MainMenuScreen(this));
 	}
 
 	@Override
 	public void render () {
+		// Clear
 		asciiTerminal.clear();
+
+		// Update
+		RainbowColor.update(Gdx.graphics.getDeltaTime());
 		super.render();
+
+		// Render
 		asciiTerminal.render(Gdx.graphics.getDeltaTime());
 	}
 
@@ -54,5 +63,13 @@ public class AsciiProgressHeroes extends Game {
 
 	public AsciiTerminal getAsciiTerminal() {
 		return asciiTerminal;
+	}
+
+	public void setWorld(World world) {
+		this.world = world;
+	}
+
+	public World getWorld() {
+		return world;
 	}
 }

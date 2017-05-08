@@ -15,12 +15,10 @@ import java.util.List;
 /**
  * Created by Julien on 30/04/2017.
  */
-public class CityScreen implements Screen {
+public class CityScreen extends CommonScreen {
 
     private final AsciiProgressHeroes game;
     private final AsciiTerminal asciiTerminal;
-
-    private List<Actor> listActor = new ArrayList<>();
 
     public CityScreen(final AsciiProgressHeroes game) {
         this.game = game;
@@ -91,19 +89,12 @@ public class CityScreen implements Screen {
     @Override
     public void show() {
         AsciiTerminalButton fightButton = new AsciiTerminalButton(asciiTerminal, "Go to land", 16, 3, Color.GRAY, Color.WHITE, Color.WHITE, Color.BLACK);
-        listActor.add(fightButton);
         asciiTerminal.addActor(fightButton);
+        getListActor().add(fightButton);
 
         AsciiTerminalButton merchantButton = new AsciiTerminalButton(asciiTerminal, "Go to merchant", 16, 4, Color.GRAY, Color.WHITE, Color.WHITE, Color.BLACK);
-        listActor.add(merchantButton);
         asciiTerminal.addActor(merchantButton);
-    }
-
-    @Override
-    public void hide() {
-        for(Actor actor : listActor) {
-            actor.remove();
-        }
+        getListActor().add(merchantButton);
     }
 
     @Override

@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.Color;
 /**
  * Created by Julien on 01/05/2017.
  */
-public class InventoryScreen implements Screen {
+public class InventoryScreen extends CommonScreen {
 
     private final AsciiProgressHeroes game;
     private final AsciiTerminal asciiTerminal;
@@ -36,11 +36,6 @@ public class InventoryScreen implements Screen {
 
     @Override
     public void show() {
-        System.out.println("show");
-    }
-
-    @Override
-    public void hide() {
 
     }
 
