@@ -1,7 +1,42 @@
 package com.asciiprogressheroes.game.view;
 
+import com.asciiprogressheroes.game.AsciiProgressHeroes;
+
 /**
  * Created by Julien on 10/05/2017.
  */
-public class LandScreen {
+public class LandScreen extends CommonScreen {
+
+    public LandScreen(final AsciiProgressHeroes game) {
+        super(game);
+    }
+
+    @Override
+    public void render(float delta) {
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void dispose() {
+
+    }
 }
