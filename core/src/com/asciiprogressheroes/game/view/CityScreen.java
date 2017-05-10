@@ -17,49 +17,50 @@ import java.util.List;
  */
 public class CityScreen extends CommonScreen {
 
-    private final AsciiProgressHeroes game;
-    private final AsciiTerminal asciiTerminal;
     CharacterFrameColor playerColor = new CharacterFrameColor();
 
     public CityScreen(final AsciiProgressHeroes game) {
-        this.game = game;
-        this.asciiTerminal = game.getAsciiTerminal();
+        super(game);
     }
 
     @Override
     public void render(float delta) {
-        if(Gdx.input.isKeyPressed(Input.Keys.A)) {
-            game.setScreen(new InventoryScreen(game));
-        }
-        else if(Gdx.input.isKeyPressed(Input.Keys.W)) {
-            playerColor.hit();
-        }
-        else if(Gdx.input.isKeyPressed(Input.Keys.X)) {
-            playerColor.poison(3);
-        }
+//        if(Gdx.input.isKeyPressed(Input.Keys.A)) {
+//            game.setScreen(new InventoryScreen(game));
+//        }
+//        else if(Gdx.input.isKeyPressed(Input.Keys.W)) {
+//            playerColor.hit();
+//        }
+//        else if(Gdx.input.isKeyPressed(Input.Keys.X)) {
+//            playerColor.poison(3);
+//        }
 
         playerColor.update(delta);
 
         Color color = playerColor.getCurrentBorderColor();
-        asciiTerminal.write(0, 0, (char)218, color);
-        asciiTerminal.write(AsciiProgressHeroes.WINDOW_WIDTH/2 - 1, 0, (char)191, color);
-        asciiTerminal.write(0, AsciiProgressHeroes.WINDOW_HEIGHT-1, (char)192, color);
-        asciiTerminal.write(AsciiProgressHeroes.WINDOW_WIDTH/2 - 1, AsciiProgressHeroes.WINDOW_HEIGHT-1, (char)217, color);
-        for(int i = 0; i < AsciiProgressHeroes.WINDOW_WIDTH/2 - 2; i++) {
-            asciiTerminal.write(1+i, 0, (char)196, color);
-            asciiTerminal.write(1+i, AsciiProgressHeroes.WINDOW_HEIGHT-1, (char)196, color);
-        }
-        for(int j = 0; j < AsciiProgressHeroes.WINDOW_HEIGHT-2; j++) {
-            asciiTerminal.write(0, 1+j, (char)179, color);
-            asciiTerminal.write(AsciiProgressHeroes.WINDOW_WIDTH/2 - 1, 1+j, (char)179, color);
-        }
+
+        drawBorder(false, color);
+        drawBorder(true, color);
+
+//        asciiTerminal.write(0, 0, (char)218, color);
+//        asciiTerminal.write(AsciiProgressHeroes.WINDOW_WIDTH/2 - 1, 0, (char)191, color);
+//        asciiTerminal.write(0, AsciiProgressHeroes.WINDOW_HEIGHT-1, (char)192, color);
+//        asciiTerminal.write(AsciiProgressHeroes.WINDOW_WIDTH/2 - 1, AsciiProgressHeroes.WINDOW_HEIGHT-1, (char)217, color);
+//        for(int i = 0; i < AsciiProgressHeroes.WINDOW_WIDTH/2 - 2; i++) {
+//            asciiTerminal.write(1+i, 0, (char)196, color);
+//            asciiTerminal.write(1+i, AsciiProgressHeroes.WINDOW_HEIGHT-1, (char)196, color);
+//        }
+//        for(int j = 0; j < AsciiProgressHeroes.WINDOW_HEIGHT-2; j++) {
+//            asciiTerminal.write(0, 1+j, (char)179, color);
+//            asciiTerminal.write(AsciiProgressHeroes.WINDOW_WIDTH/2 - 1, 1+j, (char)179, color);
+//        }
 
 
 
 
 
 
-        asciiTerminal.writeString(1, 0, "Character", Color.WHITE);
+        asciiTerminal.writeString(1, 0, "Character", playerColor.getCurrentTitleColor());
         for(int i = 0; i < AsciiProgressHeroes.WINDOW_WIDTH/2 - 2; i++) {
             asciiTerminal.writeString(i+1, 1, " ", Color.YELLOW, new Color(0x777700ff));
         }

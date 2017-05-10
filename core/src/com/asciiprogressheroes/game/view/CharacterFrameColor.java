@@ -18,6 +18,7 @@ public class CharacterFrameColor {
     private float currentHitTime = 0;
     private float currentPoisonTime = 0;
     private Color currentBorderColor = BORDER_DEFAULT_COLOR;
+    private Color currentTitleColor = TITLE_DEFAULT_COLOR;
 
     public void update(float delta) {
         currentHitTime -= delta;
@@ -32,27 +33,40 @@ public class CharacterFrameColor {
 
         if(currentHitTime > 0f) {
             if(currentPoisonTime > currentHitTime) {
-                Color tempPoisonColor  = getPoisonColor();
-                currentBorderColor = getHitColor(tempPoisonColor);
+                // Border color
+                Color tempBorderPoisonColor  = getPoisonColor(BORDER_DEFAULT_COLOR, BORDER_POISON_COLOR);
+                currentBorderColor = getHitColor(tempBorderPoisonColor, BORDER_HIT_COLOR);
+                // Title color
+                Color tempTitlePoisonColor  = getPoisonColor(TITLE_DEFAULT_COLOR, TITLE_POISON_COLOR);
+                currentTitleColor = getHitColor(tempTitlePoisonColor, TITLE_HIT_COLOR);
             }
             else {
-                currentBorderColor = getHitColor(BORDER_DEFAULT_COLOR);
+                // Border color
+                currentBorderColor = getHitColor(BORDER_DEFAULT_COLOR, BORDER_HIT_COLOR);
+                // Title color
+                currentTitleColor = getHitColor(TITLE_DEFAULT_COLOR, TITLE_HIT_COLOR);
             }
         }
         else if(currentPoisonTime > 0f) {
-            currentBorderColor = getPoisonColor();
+            // Border color
+            currentBorderColor = getPoisonColor(BORDER_DEFAULT_COLOR, BORDER_POISON_COLOR);
+            // Title color
+            currentTitleColor = getPoisonColor(TITLE_DEFAULT_COLOR, TITLE_POISON_COLOR);
         }
         else {
+            // Border color
             currentBorderColor = BORDER_DEFAULT_COLOR;
+            // Title color
+            currentTitleColor = TITLE_DEFAULT_COLOR;
         }
     }
 
-    private Color getHitColor(Color otherColor) {
-        return interpolate(otherColor, BORDER_HIT_COLOR, currentHitTime / AsciiProgressHeroes.COMBAT_TICK);
+    private Color getHitColor(Color otherColor, Color hitColor) {
+        return interpolate(otherColor, hitColor, currentHitTime / AsciiProgressHeroes.COMBAT_TICK);
     }
 
-    private Color getPoisonColor() {
-        return interpolate(BORDER_DEFAULT_COLOR, BORDER_POISON_COLOR, currentPoisonTime > AsciiProgressHeroes.COMBAT_TICK ? 1.0f : currentPoisonTime / AsciiProgressHeroes.COMBAT_TICK);
+    private Color getPoisonColor(Color defaultColor, Color poisonColor) {
+        return interpolate(defaultColor, poisonColor, currentPoisonTime > AsciiProgressHeroes.COMBAT_TICK ? 1.0f : currentPoisonTime / AsciiProgressHeroes.COMBAT_TICK);
     }
 
     public void hit() {
@@ -65,6 +79,10 @@ public class CharacterFrameColor {
 
     public Color getCurrentBorderColor() {
         return currentBorderColor;
+    }
+
+    public Color getCurrentTitleColor() {
+        return currentTitleColor;
     }
 
     private Color interpolate(Color colorA, Color colorB, float bAmount) {

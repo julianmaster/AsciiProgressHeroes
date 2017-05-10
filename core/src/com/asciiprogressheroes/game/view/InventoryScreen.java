@@ -12,12 +12,8 @@ import com.badlogic.gdx.graphics.Color;
  */
 public class InventoryScreen extends CommonScreen {
 
-    private final AsciiProgressHeroes game;
-    private final AsciiTerminal asciiTerminal;
-
     public InventoryScreen(final AsciiProgressHeroes game) {
-        this.game = game;
-        this.asciiTerminal = game.getAsciiTerminal();
+        super(game);
     }
 
     @Override

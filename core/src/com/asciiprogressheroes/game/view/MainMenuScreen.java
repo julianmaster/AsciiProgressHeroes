@@ -13,16 +13,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  */
 public class MainMenuScreen extends CommonScreen {
 
-    private final AsciiProgressHeroes game;
-    private final AsciiTerminal asciiTerminal;
-
     public MainMenuScreen(final AsciiProgressHeroes game) {
-        this.game = game;
-        this.asciiTerminal = game.getAsciiTerminal();
+        super(game);
     }
 
     @Override
     public void render(float delta) {
+        RainbowColor.update(delta);
         asciiTerminal.writeString(6, 1, "AsciiProgressHeroes", RainbowColor.getColor());
     }
 

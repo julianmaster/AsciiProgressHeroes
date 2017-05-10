@@ -35,7 +35,6 @@ public class AsciiProgressHeroes extends Game {
 //			}
 //		}
 
-//		this.setScreen(new CityScreen(this));
 		this.setScreen(new MainMenuScreen(this));
 	}
 
@@ -45,7 +44,6 @@ public class AsciiProgressHeroes extends Game {
 		asciiTerminal.clear();
 
 		// Update
-		RainbowColor.update(Gdx.graphics.getDeltaTime());
 		super.render();
 
 		// Render
