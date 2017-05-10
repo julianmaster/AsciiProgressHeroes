@@ -19,6 +19,7 @@ public class CityScreen extends CommonScreen {
 
     private final AsciiProgressHeroes game;
     private final AsciiTerminal asciiTerminal;
+    CharacterFrameColor playerColor = new CharacterFrameColor();
 
     public CityScreen(final AsciiProgressHeroes game) {
         this.game = game;
@@ -30,9 +31,16 @@ public class CityScreen extends CommonScreen {
         if(Gdx.input.isKeyPressed(Input.Keys.A)) {
             game.setScreen(new InventoryScreen(game));
         }
+        else if(Gdx.input.isKeyPressed(Input.Keys.W)) {
+            playerColor.hit();
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.X)) {
+            playerColor.poison(3);
+        }
 
+        playerColor.update(delta);
 
-        Color color = Color.DARK_GRAY;
+        Color color = playerColor.getCurrentBorderColor();
         asciiTerminal.write(0, 0, (char)218, color);
         asciiTerminal.write(AsciiProgressHeroes.WINDOW_WIDTH/2 - 1, 0, (char)191, color);
         asciiTerminal.write(0, AsciiProgressHeroes.WINDOW_HEIGHT-1, (char)192, color);

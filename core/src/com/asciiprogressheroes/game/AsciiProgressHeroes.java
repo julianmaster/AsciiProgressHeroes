@@ -18,6 +18,8 @@ public class AsciiProgressHeroes extends Game {
 	public static final int WINDOW_WIDTH = 32;
 	public static final int WINDOW_HEIGHT = 10;
 
+	public static final float COMBAT_TICK = 1.0f;
+
 	private AsciiTerminal asciiTerminal;
 	private World world;
 	
