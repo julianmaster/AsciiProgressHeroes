@@ -16,10 +16,12 @@ public class Entity {
     private int luck = 5;
 
     private Weapon weapon;
+    private Weapon basicWeapon;
     private Helmet helmet;
     private Armor armor;
 
-    public Entity() {
+    public Entity(Weapon basicWeapon) {
+        this.basicWeapon = basicWeapon;
         currentHp = getMaxHp();
     }
 

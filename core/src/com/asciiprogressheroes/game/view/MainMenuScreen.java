@@ -1,6 +1,7 @@
 package com.asciiprogressheroes.game.view;
 
 import com.asciiprogressheroes.game.AsciiProgressHeroes;
+import com.asciiprogressheroes.game.EntityGenerator;
 import com.asciiprogressheroes.game.model.World;
 import com.asciiterminal.ui.AsciiTerminal;
 import com.asciiterminal.ui.AsciiTerminalButton;
@@ -34,7 +35,7 @@ public class MainMenuScreen extends CommonScreen {
         startButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setWorld(World.newWorld());
+                game.setWorld(EntityGenerator.newWorld());
                 game.setScreen(new CityScreen(game));
             }
         });

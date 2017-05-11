@@ -1,6 +1,7 @@
 package com.asciiprogressheroes.game.view;
 
 import com.asciiprogressheroes.game.AsciiProgressHeroes;
+import com.badlogic.gdx.graphics.Color;
 
 /**
  * Created by Julien on 10/05/2017.
@@ -13,6 +14,10 @@ public class LandScreen extends CommonScreen {
 
     @Override
     public void render(float delta) {
+        drawBorder(false, Color.DARK_GRAY);
+        drawBorder(true, Color.DARK_GRAY);
+
+
     }
 
     @Override

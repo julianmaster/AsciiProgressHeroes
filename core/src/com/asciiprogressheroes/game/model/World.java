@@ -6,16 +6,7 @@ package com.asciiprogressheroes.game.model;
 public class World {
     private Player player;
 
-    public static World newWorld() {
-        return new World(new Player());
-    }
-
-    public static World loadWorld() {
-        //TODO Load world from bytecode
-        return null;
-    }
-
-    private World(Player player) {
+    public World(Player player) {
         this.player = player;
     }
 
