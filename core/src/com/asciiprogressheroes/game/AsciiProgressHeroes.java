@@ -40,14 +40,14 @@ public class AsciiProgressHeroes extends Game {
 
 	@Override
 	public void render () {
+		// Render
+		asciiTerminal.render(Gdx.graphics.getDeltaTime());
+
 		// Clear
 		asciiTerminal.clear();
 
 		// Update
 		super.render();
-
-		// Render
-		asciiTerminal.render(Gdx.graphics.getDeltaTime());
 	}
 
 	@Override

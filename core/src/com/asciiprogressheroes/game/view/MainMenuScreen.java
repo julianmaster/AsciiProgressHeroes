@@ -1,9 +1,7 @@
 package com.asciiprogressheroes.game.view;
 
 import com.asciiprogressheroes.game.AsciiProgressHeroes;
-import com.asciiprogressheroes.game.EntityGenerator;
-import com.asciiprogressheroes.game.model.World;
-import com.asciiterminal.ui.AsciiTerminal;
+import com.asciiprogressheroes.game.model.EntityGenerator;
 import com.asciiterminal.ui.AsciiTerminalButton;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
