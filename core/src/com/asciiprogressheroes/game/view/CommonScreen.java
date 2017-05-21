@@ -3,6 +3,7 @@ package com.asciiprogressheroes.game.view;
 import com.asciiprogressheroes.game.AsciiProgressHeroes;
 import com.asciiterminal.ui.AsciiTerminal;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
@@ -12,7 +13,7 @@ import java.util.List;
 /**
  * Created by Julien on 07/05/2017.
  */
-public abstract class CommonScreen implements Screen {
+public abstract class CommonScreen extends ScreenAdapter {
 
     protected final AsciiProgressHeroes game;
     protected final AsciiTerminal asciiTerminal;

@@ -22,6 +22,8 @@ import java.util.List;
 public class CityScreen extends CommonScreen {
 
     CharacterFrameColor playerColor = new CharacterFrameColor();
+    Color progressBarColor = new Color(0x777700ff);
+    Color hpBarColor = new Color(0x770000ff);
 
     public CityScreen(final AsciiProgressHeroes game) {
         super(game);
@@ -31,21 +33,21 @@ public class CityScreen extends CommonScreen {
     public void render(float delta) {
         final Player player = game.getWorld().getPlayer();
 
-        if(Gdx.input.isKeyPressed(Input.Keys.A)) {
-            game.setScreen(new InventoryScreen(game));
-        }
-        else if(Gdx.input.isKeyPressed(Input.Keys.W)) {
-            playerColor.hit();
-        }
-        else if(Gdx.input.isKeyPressed(Input.Keys.X)) {
-            playerColor.poison(3);
-        }
-        else if(Gdx.input.isKeyPressed(Input.Keys.C)) {
-            player.addExperience(10);
-        }
-        else if(Gdx.input.isKeyJustPressed(Input.Keys.V)) {
-            player.setCurrentHp(player.getCurrentHp()-10);
-        }
+//        if(Gdx.input.isKeyPressed(Input.Keys.A)) {
+//            game.setScreen(new InventoryScreen(game));
+//        }
+//        else if(Gdx.input.isKeyPressed(Input.Keys.W)) {
+//            playerColor.hit();
+//        }
+//        else if(Gdx.input.isKeyPressed(Input.Keys.X)) {
+//            playerColor.poison(3);
+//        }
+//        else if(Gdx.input.isKeyPressed(Input.Keys.C)) {
+//            player.addExperience(10);
+//        }
+//        else if(Gdx.input.isKeyJustPressed(Input.Keys.V)) {
+//            player.setCurrentHp(player.getCurrentHp()-10);
+//        }
 
         playerColor.update(delta);
         Color color = playerColor.getCurrentBorderColor();
@@ -54,7 +56,6 @@ public class CityScreen extends CommonScreen {
         asciiTerminal.writeString(1, 0, "Character", playerColor.getCurrentTitleColor());
 
         // Experience
-        Color progressBarColor = new Color(0x777700ff);
         asciiTerminal.writeString(1, 1, "Level "+player.getLevel(), Color.YELLOW);
         int currentExtStep = player.getExperienceFromLastStep();
         int ExpStep = player.getNeedExperienceForLevelUp();
@@ -66,7 +67,6 @@ public class CityScreen extends CommonScreen {
         }
 
         // HP
-        Color hpBarColor = new Color(0x770000ff);
         asciiTerminal.writeString(1, 2, "HP "+String.valueOf(player.getCurrentHp())+"/"+String.valueOf(player.getMaxHp()), Color.RED, hpBarColor);
         int maxLife = AsciiProgressHeroes.WINDOW_WIDTH/2 - 2;
         int currentLife = (int)((float)player.getCurrentHp() / (float)player.getMaxHp() * (float)maxLife);
@@ -104,11 +104,6 @@ public class CityScreen extends CommonScreen {
     }
 
     @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
     public void show() {
         AsciiTerminalButton fightButton = new AsciiTerminalButton(asciiTerminal, "Go to land", 16, 3, Color.GRAY, Color.WHITE, Color.WHITE, Color.BLACK);
         fightButton.addListener(new ClickListener() {
@@ -124,20 +119,5 @@ public class CityScreen extends CommonScreen {
         AsciiTerminalButton merchantButton = new AsciiTerminalButton(asciiTerminal, "Go to merchant", 16, 4, Color.GRAY, Color.WHITE, Color.WHITE, Color.BLACK);
         asciiTerminal.addActor(merchantButton);
         getListActor().add(merchantButton);
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void dispose() {
-
     }
 }

@@ -23,11 +23,6 @@ public class MainMenuScreen extends CommonScreen {
     }
 
     @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
     public void show() {
         AsciiTerminalButton startButton = new AsciiTerminalButton(asciiTerminal, "Start", 13, 3, Color.WHITE, Color.YELLOW, Color.YELLOW, Color.BLACK);
         startButton.addListener(new ClickListener(){
@@ -39,20 +34,5 @@ public class MainMenuScreen extends CommonScreen {
         });
         asciiTerminal.addActor(startButton);
         getListActor().add(startButton);
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void dispose() {
-
     }
 }

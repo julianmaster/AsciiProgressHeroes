@@ -86,7 +86,12 @@ public class Entity {
     }
 
     public Weapon getWeapon() {
-        return weapon;
+        if(weapon != null) {
+            return weapon;
+        }
+        else {
+            return basicWeapon;
+        }
     }
 
     public void setWeapon(Weapon weapon) {
