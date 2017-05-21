@@ -4,7 +4,6 @@ package com.asciiprogressheroes.game.model;
  * Created by Julien on 30/04/2017.
  */
 public class Entity {
-    private int baseHp = 100;
     private int currentHp;
 
     private int level = 1;
@@ -26,7 +25,7 @@ public class Entity {
     }
 
     public int getMaxHp() {
-        return baseHp + constitution * level * 5;
+        return constitution * (level+1) * 5;
     }
 
     public int getCurrentHp() {
