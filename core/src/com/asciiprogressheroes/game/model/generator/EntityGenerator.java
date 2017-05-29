@@ -1,8 +1,6 @@
-package com.asciiprogressheroes.game.model;
+package com.asciiprogressheroes.game.model.generator;
 
-import com.asciiprogressheroes.game.model.Player;
-import com.asciiprogressheroes.game.model.Weapon;
-import com.asciiprogressheroes.game.model.World;
+import com.asciiprogressheroes.game.model.*;
 
 import java.util.Random;
 
@@ -31,6 +29,12 @@ public class EntityGenerator {
 
     public static Player newPlayer() {
         Player player = new Player(newBasicPlayerWeapon());
+        player.setStrength(5);
+        player.setDexterity(5);
+        player.setIntelligence(5);
+        player.setConstitution(5);
+        player.setLuck(5);
+        player.setCurrentHp(player.getMaxHp());
         return player;
     }
 

@@ -110,7 +110,8 @@ public class CityScreen extends CommonScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.getWorld().addEnemy();
-                game.setScreen(new LandScreen(game));
+                game.setScreen(new ChoiceRegionScreen(game));
+//                game.setScreen(new RegionScreen(game));
             }
         });
         asciiTerminal.addActor(fightButton);

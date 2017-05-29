@@ -8,11 +8,11 @@ public class Entity {
 
     private int level = 1;
 
-    private int strength = 5;
-    private int dexterity = 5;
-    private int intelligence = 5;
-    private int constitution = 5;
-    private int luck = 5;
+    private int strength = 2;
+    private int dexterity = 2;
+    private int intelligence = 2;
+    private int constitution = 2;
+    private int luck = 2;
 
     private Weapon weapon;
     private Weapon basicWeapon;

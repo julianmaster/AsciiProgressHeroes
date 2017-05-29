@@ -1,5 +1,7 @@
 package com.asciiprogressheroes.game.model;
 
+import com.asciiprogressheroes.game.model.generator.EntityGenerator;
+
 import java.util.LinkedList;
 
 /**
@@ -7,6 +9,7 @@ import java.util.LinkedList;
  */
 public class World {
     private Player player;
+    private Region region;
     private LinkedList<Enemy> enemies = new LinkedList<>();
 
     public World(Player player) {

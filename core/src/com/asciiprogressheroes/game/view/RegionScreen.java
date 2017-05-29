@@ -13,7 +13,7 @@ import java.util.Random;
 /**
  * Created by Julien on 10/05/2017.
  */
-public class LandScreen extends CommonScreen {
+public class RegionScreen extends CommonScreen {
 
     public final static Float TICK_DURATION = 0.5f;
 
@@ -24,7 +24,7 @@ public class LandScreen extends CommonScreen {
     private Float currentTickValue = 0f;
     private boolean playerNextTurn = true;
 
-    public LandScreen(final AsciiProgressHeroes game) {
+    public RegionScreen(final AsciiProgressHeroes game) {
         super(game);
     }
 
@@ -131,27 +131,7 @@ public class LandScreen extends CommonScreen {
     }
 
     @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
     public void show() {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void dispose() {
 
     }
 }
