@@ -20,7 +20,7 @@ public class InventoryScreen extends CommonScreen {
     public void render(float delta) {
         asciiTerminal.writeString(1, 1, "Inventory", Color.WHITE);
 
-        if(Gdx.input.isKeyPressed(Input.Keys.Z)) {
+        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
             game.setScreen(new CityScreen(game));
         }
     }

@@ -49,9 +49,9 @@ public class CityScreen extends CommonScreen {
 //            player.setCurrentHp(player.getCurrentHp()-10);
 //        }
 
+        // Player
         playerColor.update(delta);
         Color color = playerColor.getCurrentBorderColor();
-
         drawBorder(false, color);
         asciiTerminal.writeString(1, 0, "Character", playerColor.getCurrentTitleColor());
 
