@@ -4,7 +4,7 @@ package com.asciiprogressheroes.game.model;
  * Created by Julien on 26/05/2017.
  */
 public enum RegionName {
-    LANDS("Lands"),
+    GRASSLANDS("grasslands"),
     STEPPES("Steppes"),
     FORESTS("Forests"),
     GROTTOS("Grottos"),

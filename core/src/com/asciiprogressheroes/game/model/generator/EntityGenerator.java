@@ -46,13 +46,17 @@ public class EntityGenerator {
      * Enemies
      */
 
-    public static Enemy newEnemy() {
+    public static Enemy newRandomEnemy() {
         int index = rand.nextInt(EnemyName.values().length);
         Enemy enemy = new Enemy(newBasicEnemyWeapon(), EnemyName.values()[index].name());
         return enemy;
     }
 
-
+    public static Enemy newEasyEnemy() {
+        int index = rand.nextInt(EnemyName.values().length);
+        Enemy enemy = new Enemy(newBasicEnemyWeapon(), EnemyName.values()[index].name());
+        return enemy;
+    }
 
 
 
