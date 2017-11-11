@@ -4,22 +4,24 @@ package com.asciiprogressheroes.game.model;
  * Created by Julien on 26/05/2017.
  */
 public enum RegionName {
-    GRASSLANDS("grasslands"),
-    STEPPES("Steppes"),
-    FORESTS("Forests"),
-    GROTTOS("Grottos"),
-    MOUNTAINS("Mountains"),
-    MINES("Mines"),
-    RUINS("Ruins"),
-    TEMPLES("Temples"),
-    FORTRESS("Fortress"),
-    CATACOMBS("Catacombs"),
-    CASTLES("Castles"),
-    CRYPTS("Crypts");
+    GRASSLANDS("grasslands", new EnemyName[]{EnemyName.GOBLIN, EnemyName.BANDIT, EnemyName.GNOLL}),
+    STEPPES("Steppes", new EnemyName[]{EnemyName.GOBLIN, EnemyName.BANDIT, EnemyName.GNOLL}),
+    FORESTS("Forests", new EnemyName[]{}),
+    GROTTOS("Grottos", new EnemyName[]{}),
+    MOUNTAINS("Mountains", new EnemyName[]{}),
+    MINES("Mines", new EnemyName[]{}),
+    RUINS("Ruins", new EnemyName[]{}),
+    TEMPLES("Temples", new EnemyName[]{}),
+    FORTRESS("Fortress", new EnemyName[]{}),
+    CATACOMBS("Catacombs", new EnemyName[]{}),
+    CASTLES("Castles", new EnemyName[]{}),
+    CRYPTS("Crypts", new EnemyName[]{});
 
     public String name;
+    public EnemyName[] enemyNames;
 
-    RegionName(String name) {
+    RegionName(String name, EnemyName[] enemyNames) {
         this.name = name;
+        this.enemyNames = enemyNames;
     }
 }

@@ -52,9 +52,10 @@ public class EntityGenerator {
         return enemy;
     }
 
-    public static Enemy newEasyEnemy() {
+    public static Enemy newEasyEnemy(int level) {
         int index = rand.nextInt(EnemyName.values().length);
         Enemy enemy = new Enemy(newBasicEnemyWeapon(), EnemyName.values()[index].name());
+        enemy.setLevel(level);
         return enemy;
     }
 

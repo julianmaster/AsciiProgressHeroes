@@ -1,8 +1,11 @@
 package com.asciiprogressheroes.game.model.generator;
 
+import com.asciiprogressheroes.game.model.Enemy;
 import com.asciiprogressheroes.game.model.Region;
 import com.asciiprogressheroes.game.model.RegionName;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -18,33 +21,34 @@ public class RegionGenerator {
     public static Region newEasyRegion(int level) {
         int regionIndex = rand.nextInt(easyRegionName.length);
 
-        int ennemies = rand.nextInt(3) + 1;
+        int ennemiesCount = rand.nextInt(3) + 1;
+        List<Enemy> ennemies = new ArrayList<>();
         // GRASSLANDS
         if(easyRegionName[regionIndex] == RegionName.GRASSLANDS) {
-            for(int i = 0; i < ennemies; i++) {
-
+            for(int i = 0; i < ennemiesCount; i++) {
+                ennemies.add(EntityGenerator.newEasyEnemy(level));
             }
         }
         // STEPPES
         else if(easyRegionName[regionIndex] == RegionName.STEPPES) {
-            for(int i = 0; i < ennemies; i++) {
+            for(int i = 0; i < ennemiesCount; i++) {
 
             }
         }
         // FORESTS
         else if(easyRegionName[regionIndex] == RegionName.FORESTS) {
-            for(int i = 0; i < ennemies; i++) {
+            for(int i = 0; i < ennemiesCount; i++) {
 
             }
         }
         // GROTTOS
         else {
-            for(int i = 0; i < ennemies; i++) {
+            for(int i = 0; i < ennemiesCount; i++) {
 
             }
         }
 
-        return null;
+        return new Region(easyRegionName[regionIndex], ennemies);
     }
 
     public static Region newMediumRegion(int level) {
