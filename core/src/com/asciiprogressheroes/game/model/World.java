@@ -1,6 +1,7 @@
 package com.asciiprogressheroes.game.model;
 
 import com.asciiprogressheroes.game.model.generator.EntityGenerator;
+import com.asciiprogressheroes.game.model.generator.RegionGenerator;
 
 import java.util.LinkedList;
 
@@ -9,8 +10,14 @@ import java.util.LinkedList;
  */
 public class World {
     private Player player;
-    private Region region;
-    private LinkedList<Enemy> enemies = new LinkedList<>();
+
+    private Region currentRegion;
+
+    private boolean generateRegion = true;
+
+    private Region easyRegion;
+    private Region mediumRegion;
+    private Region hardRegion;
 
     public World(Player player) {
         this.player = player;
@@ -20,21 +27,45 @@ public class World {
         return player;
     }
 
-    public void addEnemy() {
-        enemies.add(EntityGenerator.newEnemy());
+    public Region getCurrentRegion() {
+        return currentRegion;
     }
 
-    public void addEnemies(int numberEnemies) {
-        for(int i = 0; i < numberEnemies; i++) {
-            addEnemy();
-        }
+    public void setCurrentRegion(Region currentRegion) {
+        this.currentRegion = currentRegion;
+    }
+
+    public boolean isGenerateRegion() {
+        return generateRegion;
+    }
+
+    public void setGenerateRegion(boolean generateRegion) {
+        this.generateRegion = generateRegion;
+    }
+
+    public Region getEasyRegion() {
+        return easyRegion;
+    }
+
+    public Region getMediumRegion() {
+        return mediumRegion;
+    }
+
+    public Region getHardRegion() {
+        return hardRegion;
     }
 
     public Enemy getCurrentEnemy() {
-        return enemies.peekFirst();
+        return currentRegion.getEnemies().peekFirst();
     }
 
     public Enemy deleteCurrentEnemy() {
-        return enemies.pollFirst();
+        return currentRegion.getEnemies().pollFirst();
+    }
+
+    public void generateRegions() {
+        easyRegion = RegionGenerator.newRegion(RegionDifficulty.EASY, player.getLevel());
+        mediumRegion = RegionGenerator.newRegion(RegionDifficulty.MEDIUM, player.getLevel());
+        hardRegion = RegionGenerator.newRegion(RegionDifficulty.HARD, player.getLevel());
     }
 }

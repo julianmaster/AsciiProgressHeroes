@@ -105,17 +105,15 @@ public class CityScreen extends CommonScreen {
 
     @Override
     public void show() {
-        AsciiTerminalButton fightButton = new AsciiTerminalButton(asciiTerminal, "Go to land", 16, 3, Color.GRAY, Color.WHITE, Color.WHITE, Color.BLACK);
-        fightButton.addListener(new ClickListener() {
+        AsciiTerminalButton choiceRegionButton = new AsciiTerminalButton(asciiTerminal, "Go to land", 16, 3, Color.GRAY, Color.WHITE, Color.WHITE, Color.BLACK);
+        choiceRegionButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.getWorld().addEnemy();
                 game.setScreen(new ChoiceRegionScreen(game));
-//                game.setScreen(new RegionScreen(game));
             }
         });
-        asciiTerminal.addActor(fightButton);
-        getListActor().add(fightButton);
+        asciiTerminal.addActor(choiceRegionButton);
+        getListActor().add(choiceRegionButton);
 
         AsciiTerminalButton merchantButton = new AsciiTerminalButton(asciiTerminal, "Go to merchant", 16, 4, Color.GRAY, Color.WHITE, Color.WHITE, Color.BLACK);
         asciiTerminal.addActor(merchantButton);

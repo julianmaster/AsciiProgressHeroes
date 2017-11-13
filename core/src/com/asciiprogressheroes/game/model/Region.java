@@ -1,5 +1,6 @@
 package com.asciiprogressheroes.game.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -7,9 +8,9 @@ import java.util.List;
  */
 public class Region {
     private RegionName regionName;
-    private List<Enemy> enemies;
+    private LinkedList<Enemy> enemies;
 
-    public Region(RegionName regionName, List<Enemy> enemies) {
+    public Region(RegionName regionName, LinkedList<Enemy> enemies) {
         this.regionName = regionName;
         this.enemies = enemies;
     }
@@ -18,7 +19,7 @@ public class Region {
         return regionName;
     }
 
-    public List<Enemy> getEnemies() {
+    public LinkedList<Enemy> getEnemies() {
         return enemies;
     }
 }

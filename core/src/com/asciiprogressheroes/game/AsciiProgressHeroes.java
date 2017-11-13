@@ -25,7 +25,7 @@ public class AsciiProgressHeroes extends Game {
 	
 	@Override
 	public void create () {
-		asciiTerminal = new AsciiTerminal("AsciiProgressHeroes", WINDOW_WIDTH, WINDOW_HEIGHT, TILESET, CHARACTER_WIDTH, CHARACTER_HEIGHT);
+		asciiTerminal = new AsciiTerminal("AsciiProgressHeroes", WINDOW_WIDTH, WINDOW_HEIGHT, TILESET, CHARACTER_WIDTH, CHARACTER_HEIGHT, 3);
 
 		Random rand = new Random();
 
