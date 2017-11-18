@@ -2,6 +2,7 @@ package com.asciiprogressheroes.game.view;
 
 import com.asciiprogressheroes.game.AsciiProgressHeroes;
 import com.asciiprogressheroes.game.model.Region;
+import com.asciiterminal.ui.AsciiTerminalButton;
 import com.badlogic.gdx.graphics.Color;
 
 /**
@@ -27,10 +28,7 @@ public class ChoiceRegionScreen extends CommonScreen {
 
         // Easy
         String easy = "Easy";
-        Region easyRegion = game.getWorld().getEasyRegion();
         asciiTerminal.writeString(AsciiProgressHeroes.WINDOW_WIDTH/2 - easy.length()/2, 2, easy, Color.WHITE);
-        asciiTerminal.writeString(AsciiProgressHeroes.WINDOW_WIDTH/2 - easyRegion.getRegionName().name.length()/2, 3, easyRegion.getRegionName().name, Color.GREEN);
-
 
 
         // Medium
@@ -58,5 +56,13 @@ public class ChoiceRegionScreen extends CommonScreen {
 //        String labelEnemies = "Number of enemies";
 //        asciiTerminal.writeString(AsciiProgressHeroes.WINDOW_WIDTH/2 - labelEnemies.length()/2, 6, labelEnemies, Color.WHITE);
 //        asciiTerminal.writeString(AsciiProgressHeroes.WINDOW_WIDTH/2, 7, enemiesNumber.toString(), Color.WHITE);
+    }
+
+    @Override
+    public void show() {
+        Region easyRegion = game.getWorld().getEasyRegion();
+        AsciiTerminalButton easyRegionButton = new AsciiTerminalButton(asciiTerminal, easyRegion.getRegionName().name, AsciiProgressHeroes.WINDOW_WIDTH/2 - easyRegion.getRegionName().name.length()/2, 3, new Color(0x007f00ff), Color.WHITE, Color.GREEN, asciiTerminal.getDefaultCharacterBackgroundColor());
+        asciiTerminal.addActor(easyRegionButton);
+        getListActor().add(easyRegionButton);
     }
 }
