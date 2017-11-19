@@ -33,18 +33,12 @@ public class ChoiceRegionScreen extends CommonScreen {
 
         // Medium
         String medium = "Medium";
-        Region mediumRegion = game.getWorld().getMediumRegion();
         asciiTerminal.writeString(AsciiProgressHeroes.WINDOW_WIDTH/2 - medium.length()/2, 5, medium, Color.WHITE);
-        asciiTerminal.writeString(AsciiProgressHeroes.WINDOW_WIDTH/2 - mediumRegion.getRegionName().name.length()/2, 6, mediumRegion.getRegionName().name, Color.YELLOW);
-
 
 
         // Hard
         String hard = "Hard";
-        Region hardRegion = game.getWorld().getHardRegion();
         asciiTerminal.writeString(AsciiProgressHeroes.WINDOW_WIDTH/2 - hard.length()/2, 8, hard, Color.WHITE);
-        asciiTerminal.writeString(AsciiProgressHeroes.WINDOW_WIDTH/2 - hardRegion.getRegionName().name.length()/2, 9, hardRegion.getRegionName().name, Color.RED);
-
 
 
 
@@ -60,9 +54,27 @@ public class ChoiceRegionScreen extends CommonScreen {
 
     @Override
     public void show() {
+        // Return
+        AsciiTerminalButton returnButton = new AsciiTerminalButton(asciiTerminal,((char)27)+"Return", 0, 0, Color.GRAY, Color.WHITE, Color.WHITE, asciiTerminal.getDefaultCharacterBackgroundColor());
+        asciiTerminal.addActor(returnButton);
+        getListActor().add(returnButton);
+
+        // Easy
         Region easyRegion = game.getWorld().getEasyRegion();
         AsciiTerminalButton easyRegionButton = new AsciiTerminalButton(asciiTerminal, easyRegion.getRegionName().name, AsciiProgressHeroes.WINDOW_WIDTH/2 - easyRegion.getRegionName().name.length()/2, 3, new Color(0x007f00ff), Color.WHITE, Color.GREEN, asciiTerminal.getDefaultCharacterBackgroundColor());
         asciiTerminal.addActor(easyRegionButton);
         getListActor().add(easyRegionButton);
+
+        // Medium
+        Region mediumRegion = game.getWorld().getMediumRegion();
+        AsciiTerminalButton mediumRegionButton = new AsciiTerminalButton(asciiTerminal, mediumRegion.getRegionName().name, AsciiProgressHeroes.WINDOW_WIDTH/2 - mediumRegion.getRegionName().name.length()/2, 6, new Color(0x7f7f00ff), Color.WHITE, Color.YELLOW, asciiTerminal.getDefaultCharacterBackgroundColor());
+        asciiTerminal.addActor(mediumRegionButton);
+        getListActor().add(mediumRegionButton);
+
+        // Hard
+        Region hardRegion = game.getWorld().getHardRegion();
+        AsciiTerminalButton hardRegionButton = new AsciiTerminalButton(asciiTerminal, hardRegion.getRegionName().name, AsciiProgressHeroes.WINDOW_WIDTH/2 - hardRegion.getRegionName().name.length()/2, 9, new Color(0x7f0000ff), Color.WHITE, Color.RED, asciiTerminal.getDefaultCharacterBackgroundColor());
+        asciiTerminal.addActor(hardRegionButton);
+        getListActor().add(hardRegionButton);
     }
 }
