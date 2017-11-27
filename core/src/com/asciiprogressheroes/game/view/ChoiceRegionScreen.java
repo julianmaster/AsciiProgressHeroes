@@ -48,7 +48,7 @@ public class ChoiceRegionScreen extends CommonScreen {
 
 
 
-        // TODO : Depend of the intelligence of player
+        // TODO Depend of the intelligence of player
 //        String labelEnemies = "Number of enemies";
 //        asciiTerminal.writeString(AsciiProgressHeroes.WINDOW_WIDTH/2 - labelEnemies.length()/2, 6, labelEnemies, Color.WHITE);
 //        asciiTerminal.writeString(AsciiProgressHeroes.WINDOW_WIDTH/2, 7, enemiesNumber.toString(), Color.WHITE);
@@ -74,6 +74,7 @@ public class ChoiceRegionScreen extends CommonScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //TODO adding action
+                game.setScreen(new LandScreen(game));
             }
         });
         asciiTerminal.addActor(easyRegionButton);

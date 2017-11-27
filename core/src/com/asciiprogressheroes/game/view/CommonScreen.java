@@ -41,17 +41,21 @@ public abstract class CommonScreen extends ScreenAdapter {
             offset += AsciiProgressHeroes.WINDOW_WIDTH/2;
         }
 
-        asciiTerminal.write(0 + offset, 0, (char)218, borderColor);
-        asciiTerminal.write(AsciiProgressHeroes.WINDOW_WIDTH/2 - 1 + offset, 0, (char)191, borderColor);
-        asciiTerminal.write(0 + offset, AsciiProgressHeroes.WINDOW_HEIGHT - 1, (char)192, borderColor);
-        asciiTerminal.write(AsciiProgressHeroes.WINDOW_WIDTH/2 - 1 + offset, AsciiProgressHeroes.WINDOW_HEIGHT - 1, (char)217, borderColor);
-        for(int i = 0 + offset; i < AsciiProgressHeroes.WINDOW_WIDTH/2 - 2 + offset; i++) {
-            asciiTerminal.write(1+i, 0, (char)196, borderColor);
-            asciiTerminal.write(1+i, AsciiProgressHeroes.WINDOW_HEIGHT - 1, (char)196, borderColor);
+        drawRectangle(offset, 0, AsciiProgressHeroes.WINDOW_WIDTH/2 - 1, AsciiProgressHeroes.WINDOW_HEIGHT - 1, borderColor);
+    }
+
+    protected void drawRectangle(int positionX, int positionY, int width, int height, Color color) {
+        asciiTerminal.write(positionX, positionY, (char)218, color);
+        asciiTerminal.write(positionX + width, positionY, (char)191, color);
+        asciiTerminal.write(positionX, positionY + height, (char)192, color);
+        asciiTerminal.write(positionX + width, positionY + height, (char)217, color);
+        for(int i = positionX; i < positionX + width - 1; i++) {
+            asciiTerminal.write(1+i, 0, (char)196, color);
+            asciiTerminal.write(1+i, AsciiProgressHeroes.WINDOW_HEIGHT - 1, (char)196, color);
         }
-        for(int j = 0; j < AsciiProgressHeroes.WINDOW_HEIGHT - 2; j++) {
-            asciiTerminal.write(0 + offset, 1+j, (char)179, borderColor);
-            asciiTerminal.write(AsciiProgressHeroes.WINDOW_WIDTH/2 - 1 + offset, 1+j, (char)179, borderColor);
+        for(int j = positionY; j < positionY + height - 1; j++) {
+            asciiTerminal.write(positionX, 1+j, (char)179, color);
+            asciiTerminal.write(positionX + width, 1+j, (char)179, color);
         }
     }
 }

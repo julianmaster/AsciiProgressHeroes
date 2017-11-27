@@ -2,28 +2,17 @@ package com.asciiprogressheroes.game.view;
 
 import com.asciiprogressheroes.game.AsciiProgressHeroes;
 import com.asciiprogressheroes.game.model.Player;
-import com.asciiterminal.ui.AsciiTerminal;
 import com.asciiterminal.ui.AsciiTerminalButton;
-import com.asciiterminal.ui.AsciiTerminalDataCell;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Julien on 30/04/2017.
  */
 public class CityScreen extends CommonScreen {
 
-    CharacterFrameColor playerColor = new CharacterFrameColor();
-    Color progressBarColor = new Color(0x777700ff);
-    Color hpBarColor = new Color(0x770000ff);
+    private CharacterFrameColor playerColor = new CharacterFrameColor();
 
     public CityScreen(final AsciiProgressHeroes game) {
         super(game);
@@ -51,8 +40,7 @@ public class CityScreen extends CommonScreen {
 
         // Player
         playerColor.update(delta);
-        Color color = playerColor.getCurrentBorderColor();
-        drawBorder(false, color);
+        drawBorder(false, playerColor.getCurrentBorderColor());
         asciiTerminal.writeString(1, 0, "Character", playerColor.getCurrentTitleColor());
 
         // Experience
@@ -63,16 +51,16 @@ public class CityScreen extends CommonScreen {
         int currentExp = (int)((float)currentExtStep / (float)ExpStep * (float)maxExp);
         for(int i = 0; i < maxExp; i++) {
             char c = asciiTerminal.getCell(i+1, 1).data;
-            asciiTerminal.write(i+1, 1, c, Color.YELLOW, i < currentExp ? progressBarColor : Color.BLACK);
+            asciiTerminal.write(i+1, 1, c, Color.YELLOW, i < currentExp ? Global.PROGRESS_BAR_COLOR : Color.BLACK);
         }
 
         // HP
-        asciiTerminal.writeString(1, 2, "HP "+String.valueOf(player.getCurrentHp())+"/"+String.valueOf(player.getMaxHp()), Color.RED, hpBarColor);
+        asciiTerminal.writeString(1, 2, "HP "+String.valueOf(player.getCurrentHp())+"/"+String.valueOf(player.getMaxHp()), Color.RED, Global.HP_BAR_COLOR);
         int maxLife = AsciiProgressHeroes.WINDOW_WIDTH/2 - 2;
         int currentLife = (int)((float)player.getCurrentHp() / (float)player.getMaxHp() * (float)maxLife);
         for(int i = 0; i < maxLife; i++) {
             char c = asciiTerminal.getCell(i+1, 2).data;
-            asciiTerminal.write(i+1, 2, c, Color.RED, i < currentLife ? hpBarColor : Color.BLACK);
+            asciiTerminal.write(i+1, 2, c, Color.RED, i < currentLife ? Global.HP_BAR_COLOR : Color.BLACK);
         }
 
 
