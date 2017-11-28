@@ -5,4 +5,6 @@ import com.badlogic.gdx.graphics.Color;
 public class Global {
     public final static Color PROGRESS_BAR_COLOR = new Color(0x777700ff);
     public final static Color HP_BAR_COLOR = new Color(0x770000ff);
+
+    public final static Float TICK_DURATION = 0.5f;
 }

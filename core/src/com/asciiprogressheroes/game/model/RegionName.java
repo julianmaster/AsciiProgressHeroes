@@ -91,14 +91,31 @@ public enum RegionName {
     TEMPLES("Temples", new EnemyName[]{
 
     }),
-    FORTRESS("Fortress", new EnemyName[]{}),
-    CATACOMBS("Catacombs", new EnemyName[]{}),
+    FORTRESS("Fortress", new EnemyName[]{
+
+    }),
+    CATACOMBS("Catacombs", new EnemyName[]{
+            EnemyName.MIMIC,
+            EnemyName.SPIDER,
+            EnemyName.SUCUBE,
+            EnemyName.BAT,
+            EnemyName.SKELETON,
+            EnemyName.WITCH,
+            EnemyName.ZOMBIE,
+            EnemyName.GHOST,
+            EnemyName.GHOUL,
+            EnemyName.DEMON,
+            EnemyName.VAMPIRE
+    }),
     CASTLES("Castles", new EnemyName[]{
             EnemyName.SKELETON,
             EnemyName.WITCH,
             EnemyName.ZOMBIE,
             EnemyName.GHOST,
-            EnemyName.GHOUL
+            EnemyName.GHOUL,
+            EnemyName.VAMPIRE,
+            EnemyName.BANSHEE,
+            EnemyName.DEMON
     }),
     CRYPTS("Crypts", new EnemyName[]{
             EnemyName.CERBERUS,

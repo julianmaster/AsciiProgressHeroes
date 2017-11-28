@@ -17,8 +17,8 @@ public class ChoiceRegionScreen extends CommonScreen {
     public ChoiceRegionScreen(AsciiProgressHeroes game) {
         super(game);
 
-        if(game.getWorld().isGenerateRegion()) {
-            game.getWorld().setGenerateRegion(false);
+        if(game.getWorld().isNeedGenerateRegion()) {
+            game.getWorld().setNeedGenerateRegion(false);
             game.getWorld().generateRegions();
         }
     }
@@ -74,7 +74,8 @@ public class ChoiceRegionScreen extends CommonScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //TODO adding action
-                game.setScreen(new LandScreen(game));
+                game.getWorld().setCurrentRegion(easyRegion);
+                game.setScreen(new RegionScreen(game));
             }
         });
         asciiTerminal.addActor(easyRegionButton);
@@ -87,6 +88,8 @@ public class ChoiceRegionScreen extends CommonScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //TODO adding action
+                game.getWorld().setCurrentRegion(mediumRegion);
+                game.setScreen(new RegionScreen(game));
             }
         });
         asciiTerminal.addActor(mediumRegionButton);
@@ -99,6 +102,8 @@ public class ChoiceRegionScreen extends CommonScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //TODO adding action
+                game.getWorld().setCurrentRegion(hardRegion);
+                game.setScreen(new RegionScreen(game));
             }
         });
         asciiTerminal.addActor(hardRegionButton);

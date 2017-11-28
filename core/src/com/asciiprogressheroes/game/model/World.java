@@ -13,7 +13,7 @@ public class World {
 
     private Region currentRegion;
 
-    private boolean generateRegion = true;
+    private boolean needGenerateRegion = true;
 
     private Region easyRegion;
     private Region mediumRegion;
@@ -35,12 +35,12 @@ public class World {
         this.currentRegion = currentRegion;
     }
 
-    public boolean isGenerateRegion() {
-        return generateRegion;
+    public boolean isNeedGenerateRegion() {
+        return needGenerateRegion;
     }
 
-    public void setGenerateRegion(boolean generateRegion) {
-        this.generateRegion = generateRegion;
+    public void setNeedGenerateRegion(boolean needGenerateRegion) {
+        this.needGenerateRegion = needGenerateRegion;
     }
 
     public Region getEasyRegion() {

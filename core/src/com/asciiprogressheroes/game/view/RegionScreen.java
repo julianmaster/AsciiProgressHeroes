@@ -15,11 +15,6 @@ import java.util.Random;
  */
 public class RegionScreen extends CommonScreen {
 
-    public final static Float TICK_DURATION = 0.5f;
-
-    private Color progressBarColor = new Color(0x777700ff);
-    private Color hpBarColor = new Color(0x770000ff);
-
     private Random rand = new Random();
     private Float currentTickValue = 0f;
     private boolean playerNextTurn = true;
@@ -43,16 +38,16 @@ public class RegionScreen extends CommonScreen {
         int currentExp = (int)((float)currentExtStep / (float)ExpStep * (float)maxExp);
         for(int i = 0; i < maxExp; i++) {
             char c = asciiTerminal.getCell(i+1, 1).data;
-            asciiTerminal.write(i+1, 1, c, Color.YELLOW, i < currentExp ? progressBarColor : Color.BLACK);
+            asciiTerminal.write(i+1, 1, c, Color.YELLOW, i < currentExp ? Global.PROGRESS_BAR_COLOR : Color.BLACK);
         }
 
         // HP
-        asciiTerminal.writeString(1, 2, "HP "+String.valueOf(player.getCurrentHp())+"/"+String.valueOf(player.getMaxHp()), Color.RED, hpBarColor);
+        asciiTerminal.writeString(1, 2, "HP "+String.valueOf(player.getCurrentHp())+"/"+String.valueOf(player.getMaxHp()), Color.RED, Global.HP_BAR_COLOR);
         int maxLife = AsciiProgressHeroes.WINDOW_WIDTH/2 - 2;
         int currentLife = (int)((float)player.getCurrentHp() / (float)player.getMaxHp() * (float)maxLife);
         for(int i = 0; i < maxLife; i++) {
             char c = asciiTerminal.getCell(i+1, 2).data;
-            asciiTerminal.write(i+1, 2, c, Color.RED, i < currentLife ? hpBarColor : Color.BLACK);
+            asciiTerminal.write(i+1, 2, c, Color.RED, i < currentLife ? Global.HP_BAR_COLOR : Color.BLACK);
         }
 
         // Attack
@@ -67,7 +62,7 @@ public class RegionScreen extends CommonScreen {
         // Enemy
         Enemy currentEnemy = game.getWorld().getCurrentEnemy();
         drawBorder(true, Color.DARK_GRAY);
-        String enemyName = currentEnemy.getName().substring(0,1)+currentEnemy.getName().substring(1).toLowerCase();
+        String enemyName = currentEnemy.getName().name;
         asciiTerminal.writeString(AsciiProgressHeroes.WINDOW_WIDTH - 1 - enemyName.length(), 0, enemyName, Color.WHITE);
 
         // Enemy experience
@@ -76,12 +71,12 @@ public class RegionScreen extends CommonScreen {
 
         // Enemy HP
         String enemyHP = "HP "+String.valueOf(currentEnemy.getCurrentHp())+"/"+String.valueOf(currentEnemy.getMaxHp());
-        asciiTerminal.writeString(AsciiProgressHeroes.WINDOW_WIDTH - 1 - enemyHP.length(), 2, enemyHP, Color.RED, hpBarColor);
+        asciiTerminal.writeString(AsciiProgressHeroes.WINDOW_WIDTH - 1 - enemyHP.length(), 2, enemyHP, Color.RED, Global.HP_BAR_COLOR);
         int enemyMaxLife = AsciiProgressHeroes.WINDOW_WIDTH/2 - 2;
         int enemyCurrentLife = (int)((float)currentEnemy.getCurrentHp() / (float)currentEnemy.getMaxHp() * (float)maxLife);
         for(int i = 0; i < maxLife; i++) {
             char c = asciiTerminal.getCell(AsciiProgressHeroes.WINDOW_WIDTH - 2 - i, 2).data;
-            asciiTerminal.write(AsciiProgressHeroes.WINDOW_WIDTH - 2 - i, 2, c, Color.RED, i < enemyCurrentLife ? hpBarColor : Color.BLACK);
+            asciiTerminal.write(AsciiProgressHeroes.WINDOW_WIDTH - 2 - i, 2, c, Color.RED, i < enemyCurrentLife ? Global.HP_BAR_COLOR : Color.BLACK);
         }
 
         // Enemy attack
@@ -94,18 +89,10 @@ public class RegionScreen extends CommonScreen {
 
 
 
-
-        if(Gdx.input.isKeyJustPressed(Input.Keys.V)) {
-            currentEnemy.setCurrentHp(currentEnemy.getCurrentHp()-10);
-        }
-
-
-
-
         // Update
         currentTickValue += delta;
-        if(currentTickValue >= TICK_DURATION) {
-            currentTickValue -= TICK_DURATION;
+        if(currentTickValue >= Global.TICK_DURATION) {
+            currentTickValue -= Global.TICK_DURATION;
 
             if(playerNextTurn) {
                 int degat = rand.nextInt(player.getWeapon().getMaxDegat() - player.getWeapon().getMinDegat() + 1) +player.getWeapon().getMinDegat();

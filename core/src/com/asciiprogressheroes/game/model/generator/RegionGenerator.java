@@ -3,11 +3,8 @@ package com.asciiprogressheroes.game.model.generator;
 import com.asciiprogressheroes.game.model.Enemy;
 import com.asciiprogressheroes.game.model.Region;
 import com.asciiprogressheroes.game.model.RegionDifficulty;
-import com.asciiprogressheroes.game.model.RegionName;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -24,7 +21,7 @@ public class RegionGenerator {
 
         LinkedList<Enemy> ennemies = new LinkedList<>();
         for(int i = 0; i < ennemiesCount; i++) {
-            ennemies.add(EntityGenerator.newEasyEnemy(level, regionDifficulty.regionNames[regionIndex]));
+            ennemies.add(EntityGenerator.newEnemy(level, regionDifficulty.regionNames[regionIndex]));
         }
 
         return new Region(regionDifficulty.regionNames[regionIndex], ennemies);
