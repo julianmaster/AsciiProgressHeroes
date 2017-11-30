@@ -17,7 +17,7 @@ public class RegionGenerator {
     public static Region newRegion(RegionDifficulty regionDifficulty, int level) {
         int regionIndex = rand.nextInt(regionDifficulty.regionNames.length);
 
-        int ennemiesCount = rand.nextInt(regionDifficulty.randomCount) + regionDifficulty.offsetCount;
+        int ennemiesCount = rand.nextInt(regionDifficulty.randomEnemyCount) + regionDifficulty.offsetEnemyCount;
 
         LinkedList<Enemy> ennemies = new LinkedList<>();
         for(int i = 0; i < ennemiesCount; i++) {

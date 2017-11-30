@@ -6,12 +6,12 @@ public enum RegionDifficulty {
     HARD(new RegionName[]{RegionName.FORTRESS, RegionName.CATACOMBS, RegionName.CASTLES, RegionName.CRYPTS}, 4, 4);
 
     public RegionName[] regionNames;
-    public int randomCount;
-    public int offsetCount;
+    public int randomEnemyCount;
+    public int offsetEnemyCount;
 
     RegionDifficulty(RegionName[] regionNames, int randomCount, int offsetCount) {
         this.regionNames = regionNames;
-        this.randomCount = randomCount;
-        this.offsetCount = offsetCount;
+        this.randomEnemyCount = randomCount;
+        this.offsetEnemyCount = offsetCount;
     }
 }

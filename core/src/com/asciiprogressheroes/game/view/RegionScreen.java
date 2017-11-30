@@ -25,8 +25,42 @@ public class RegionScreen extends CommonScreen {
 
     @Override
     public void render(float delta) {
-        // Player
         final Player player = game.getWorld().getPlayer();
+        final Enemy currentEnemy = game.getWorld().getCurrentEnemy();
+
+
+        // Update
+        currentTickValue += delta;
+        if(currentTickValue >= Global.TICK_DURATION) {
+            currentTickValue -= Global.TICK_DURATION;
+
+            if(playerNextTurn) {
+                int degat = rand.nextInt(player.getWeapon().getMaxDegat() - player.getWeapon().getMinDegat() + 1) +player.getWeapon().getMinDegat();
+                currentEnemy.setCurrentHp(currentEnemy.getCurrentHp() - degat);
+                if(currentEnemy.getCurrentHp() <= 0) {
+                    game.getWorld().deleteCurrentEnemy();
+                }
+            }
+            else {
+                int degat = rand.nextInt(currentEnemy.getWeapon().getMaxDegat() - currentEnemy.getWeapon().getMinDegat() + 1) +currentEnemy.getWeapon().getMinDegat();
+                player.setCurrentHp(player.getCurrentHp() - degat);
+                if(player.getCurrentHp() <= 0) {
+                    game.setScreen(new CityScreen(game));
+                }
+            }
+
+            playerNextTurn = !playerNextTurn;
+
+            if(game.getWorld().getCurrentEnemy() == null) {
+                game.setScreen(new CityScreen(game));
+            }
+        }
+
+
+
+
+
+        // Player
         drawBorder(false, Color.DARK_GRAY);
         asciiTerminal.writeString(1, 0, "Character", Color.WHITE);
 
@@ -60,7 +94,6 @@ public class RegionScreen extends CommonScreen {
 
 
         // Enemy
-        Enemy currentEnemy = game.getWorld().getCurrentEnemy();
         drawBorder(true, Color.DARK_GRAY);
         String enemyName = currentEnemy.getName().name;
         asciiTerminal.writeString(AsciiProgressHeroes.WINDOW_WIDTH - 1 - enemyName.length(), 0, enemyName, Color.WHITE);
@@ -82,39 +115,6 @@ public class RegionScreen extends CommonScreen {
         // Enemy attack
         String enemyWeapon = "Dmg: "+currentEnemy.getWeapon().getMinDegat()+"-"+currentEnemy.getWeapon().getMaxDegat();
         asciiTerminal.writeString(AsciiProgressHeroes.WINDOW_WIDTH - 1 - enemyWeapon.length(), 4, enemyWeapon, Color.WHITE);
-
-
-
-
-
-
-
-        // Update
-        currentTickValue += delta;
-        if(currentTickValue >= Global.TICK_DURATION) {
-            currentTickValue -= Global.TICK_DURATION;
-
-            if(playerNextTurn) {
-                int degat = rand.nextInt(player.getWeapon().getMaxDegat() - player.getWeapon().getMinDegat() + 1) +player.getWeapon().getMinDegat();
-                currentEnemy.setCurrentHp(currentEnemy.getCurrentHp() - degat);
-                if(currentEnemy.getCurrentHp() <= 0) {
-                    game.getWorld().deleteCurrentEnemy();
-                }
-            }
-            else {
-                int degat = rand.nextInt(currentEnemy.getWeapon().getMaxDegat() - currentEnemy.getWeapon().getMinDegat() + 1) +currentEnemy.getWeapon().getMinDegat();
-                player.setCurrentHp(player.getCurrentHp() - degat);
-                if(player.getCurrentHp() <= 0) {
-                    game.setScreen(new CityScreen(game));
-                }
-            }
-
-            playerNextTurn = !playerNextTurn;
-
-            if(game.getWorld().getCurrentEnemy() == null) {
-                game.setScreen(new CityScreen(game));
-            }
-        }
     }
 
     @Override
